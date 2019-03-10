@@ -12,3 +12,12 @@ class JiandanItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+
+class JiandanPicItem(scrapy.Item):
+    """煎蛋无聊图"""
+    # image_url = scrapy.Field()  # 图片链接
+    # image_path = scrapy.Field()  # 图片链接
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
+    image_paths = scrapy.Field()
