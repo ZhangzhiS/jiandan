@@ -9,7 +9,7 @@ from jiandan.items import JiandanPicItem
 class JiandanPicSpider(scrapy.Spider):
     name = 'jiandan_pic'
     allowed_domains = ['jandan.net/pic']
-    start_urls = ['https://jandan.net/pic/']
+    start_urls = ['https://jandan.net/pic/', 'https://jandan.net/ooxx/']
 
     def parse(self, response):
         image_urls = []
@@ -22,6 +22,12 @@ class JiandanPicSpider(scrapy.Spider):
         item = JiandanPicItem()
         item["image_urls"] = image_urls
         yield item
+        # 执行翻页操作
+        page_num = response.xpath('//*[@id="comments"]/div[3]/div/a/@href').extract()
+        for next_page in page_num:
+            next_page_url = "https://" + next_page
+            print(next_page_url)
+            yield scrapy.Request(url=next_page_url, callback=self.parse)
 
 
 def decode_image_url(encode_str):

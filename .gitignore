@@ -4,3 +4,5 @@ jiandan/__pycache__/
 \.idea/
 
 jiandan/spiders/__pycache__/
+
+jiandan/images/
