@@ -9,6 +9,8 @@ import scrapy
 from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline
 
+from jiandan.tools import word_segmentation, word_frequency_count, create_world_cloud
+
 
 class JiandanPipeline(object):
     def process_item(self, item, spider):
@@ -30,4 +32,23 @@ class JiandanPicPipeline(ImagesPipeline):
         if not image_paths:
             raise DropItem("Item contains no images")
         item['image_paths'] = image_paths
+        return item
+
+
+class JiandanArticlePipeline(object):
+
+    def process_item(self, item, spider):
+        title = item["title"]
+        content = "".join(item["content"])
+        article_url = item["article_url"]
+        word_list = word_segmentation(content)
+        sorted_list = word_frequency_count(word_list)
+        word_content = " ".join([x[0] for x in sorted_list])
+        create_world_cloud(title, word_content)
+        articl = {
+            "title": title,
+            "article_url": article_url,
+            "content": content,
+        }
+        print(articl)
         return item

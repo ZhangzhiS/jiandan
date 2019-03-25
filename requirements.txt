@@ -1,0 +1,4 @@
+scrapy
+jieba
+wordcloud
+matplotlib

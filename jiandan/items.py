@@ -21,3 +21,10 @@ class JiandanPicItem(scrapy.Item):
     image_urls = scrapy.Field()
     images = scrapy.Field()
     image_paths = scrapy.Field()
+
+
+class JiandanArticleItem(scrapy.Item):
+    """文章"""
+    title = scrapy.Field()
+    article_url = scrapy.Field()
+    content = scrapy.Field()

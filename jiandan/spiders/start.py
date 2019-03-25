@@ -2,4 +2,4 @@
 
 from scrapy import cmdline
 
-cmdline.execute("scrapy crawl jiandan_pic".split())
+cmdline.execute("scrapy crawl jiandan_home".split())

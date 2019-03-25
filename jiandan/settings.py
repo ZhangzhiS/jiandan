@@ -71,7 +71,8 @@ ROBOTSTXT_OBEY = True
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 ITEM_PIPELINES = {
-    'jiandan.pipelines.JiandanPicPipeline': 300,
+    # 'jiandan.pipelines.JiandanPicPipeline': 300,
+    # 'jiandan.pipelines.JiandanArticlePipeline': 300,
     'scrapy.pipelines.images.ImagesPipeline': 5,
 }
 

@@ -7,6 +7,9 @@ from jiandan.items import JiandanPicItem
 
 
 class JiandanPicSpider(scrapy.Spider):
+    custom_settings = {
+        "ITEM_PIPELINES": {'scrapy.pipelines.images.ImagesPipeline': 5}
+    }
     name = 'jiandan_pic'
     allowed_domains = ['jandan.net/pic']
     start_urls = ['https://jandan.net/pic/', 'https://jandan.net/ooxx/']
@@ -38,3 +41,14 @@ def decode_image_url(encode_str):
     """
     image_url = base64.b64decode(encode_str).decode("utf-8")
     return "https:"+image_url
+
+
+if __name__ == '__main__':
+    from scrapy import cmdline
+
+    cmdline.execute("scrapy crawl jiandan_home".split())
+"""启动脚本"""
+
+from scrapy import cmdline
+
+cmdline.execute("scrapy crawl jiandan_home".split())
